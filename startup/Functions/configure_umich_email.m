@@ -39,50 +39,52 @@ else
         email_switch = {email_switch};
     end
     
+    
     if any(contains(email_switch,'@umich.edu'))
         % umich_server = resolve_hostname('smtp-private.mail.umich.edu','');
         umich_server_ip = resolve_hostname('smtp-public.mail.umich.edu','');
         if length(umich_server_ip) > 1
-            umich_server = 'smtp-public.mail.umich.edu';
+            smtp_server = 'smtp-public.mail.umich.edu';
         else
-            umich_server = 'smtp.mail.umich.edu';
+            smtp_server = 'smtp.mail.umich.edu';
         end
     else
-        umich_server_ip = resolve_hostname('smtp-public.mail.umich.edu','');
-        if length(umich_server_ip) > 1
-            umich_server = 'smtp-public.mail.umich.edu';
-        else
-            umich_server = 'smtp.mail.umich.edu';
-        end
+%         umich_server_ip = resolve_hostname('smtp-public.mail.umich.edu','');
+%         if length(umich_server_ip) > 1
+%             smtp_server = 'smtp-public.mail.umich.edu';
+%         else
+%             smtp_server = 'smtp.mail.umich.edu';
+%         end
+        smtp_server = 'smtp.gmail.com';
     end
     
     %%
     if any(contains(email_switch,'cubscout'))
         send_email_pass = 'q$jZmIXkN!Zv';
         send_email =  'cubscoutsday@umich.edu';
-        smtp_server = umich_server;
+        %smtp_server = smtp_server;
         user_name = send_email;
     elseif any(contains(email_switch,'tbpmig'))
         send_email = 'tbp.migamma@umich.edu';
         send_email_pass = 'XU@Jec!##$3G';
-        smtp_server = umich_server;
+        %smtp_server = smtp_server;
         user_name = send_email;
     elseif any(contains(email_switch,'shorelab'))
         send_email = 'the-shore-lab@umich.edu';
-        send_email_pass = 'Q7j8B*f94s';
-        smtp_server = umich_server;
+        send_email_pass = '6$eWSMo2Zj9#u$g';
+        %smtp_server = smtp_server;
         user_name = send_email;
     elseif any(contains(email_switch,'damartel'))
         send_email = 'damartel@umich.edu';
         send_email_pass = 'yaha4edEkuRaswe';
-        smtp_server = umich_server;
+        %smtp_server = smtp_server;
         user_name = send_email;
     elseif any(contains(email_switch,'reset'))
         load(save_file,'default_smtp','default_email','default_username','default_password');
         send_email = default_email;
         send_email_pass = default_password;
-        smtp_server = default_smtp;
         user_name = default_username;
+        smtp_server = default_smtp;
     end
     
     
